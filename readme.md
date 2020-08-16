@@ -9,8 +9,6 @@ Além desses módulos, já está implementado um sistema de autenticação, cada
 
 - Clone repository
 ```
-$ git clone git@github.com:mffonseca/laravel-admin.git
-```
 
 - Access directory
 ```
