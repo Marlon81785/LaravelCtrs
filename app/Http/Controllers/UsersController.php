@@ -24,20 +24,30 @@ class UsersController extends Controller
     {   
         $logged = Auth::user();
 
-        if (Permissions::permissaoModerador($logged)) {
+        if (Permissions::permissaoAdministrador($logged)) {
             $users = User::all();
         } else {
             $users = User::where('r_auth', $logged->id)->orWhere('id', $logged->id)->get();
         }
 
         Logs::cadastrar($logged->id, ($logged->name . ' visualizou a lista de usuários'));
-        if(Permissions::permissaoModerador($logged)){
+
+        if(Permissions::permissaoAdministrador($logged)){
 
             return view('users.index', [
                 'users' => $users,
                 'adm' => true
             ]);
         
+        }else{
+            if(Permissions::permissaoModerador($logged)){
+
+                return view('users.index', [
+                    'users' => $users,
+                    'adm' => true
+                ]);
+            
+            }
         }
     }
     

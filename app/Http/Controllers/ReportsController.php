@@ -28,7 +28,7 @@ class ReportsController extends Controller
 
         Logs::cadastrar(Auth::user()->id, (Auth::user()->name . ' vizualizou a lista de relatórios'));
 
-        if(Permissions::permissaoModerador($logged)){
+        if(Permissions::permissaoAdministrador($logged)){
             return view('reports.index', ['reports' => $reports,'adm' => true]);
         }
     }

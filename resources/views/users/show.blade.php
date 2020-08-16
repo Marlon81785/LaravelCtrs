@@ -10,7 +10,7 @@
 
     <div class="box-body">
     
-        @if(isset($user->perfil) && $user->perfil->administrator != 1)
+        @if(isset($user->perfil) && $user->perfil->administrator != 0)
             <div class="text-right">
                 <a href="{{ URL('/') }}/{{$user->id}}/permissions" class="btn btn-warning">Permissões</a>
             </div>

@@ -28,6 +28,7 @@ class Permissions extends Model
 
     static public function permissaoModerador($logged)
     {
+ 
         if (isset($logged->perfil) && ($logged->perfil->moderator || $logged->perfil->administrator)) {
         	return true;
         }

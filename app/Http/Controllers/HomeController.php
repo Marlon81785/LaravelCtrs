@@ -31,10 +31,12 @@ class HomeController extends Controller
     public function index()
     {
         $logged = Auth::user();
-        if(Permissions::permissaoModerador($logged)){
+        if(Permissions::permissaoAdministrador($logged)){
             return view('home')->with(['adm' => true]); 
-            
-            
+        }
+
+        if(Permissions::permissaoModerador($logged)){
+            return view('home')->with(['mod' => true]); 
         }
         return view('home');
     }

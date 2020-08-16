@@ -76,6 +76,38 @@
                             <span>Cadastro de Paciente</span>
                         </a>
                     </li>
+                    @if(isset($mod) && $mod == true || isset($adm) && $adm == true)
+                    <hr>
+                    <li id='registerCid'>
+                        <a href="{{ URL('/') }}/registerCid">
+                            <i class='glyphicon glyphicon-list'></i>
+                            <span>Cadastro de CID</span>
+                        </a>
+                    </li>
+
+                    <li id='registerAnaminese'>
+                        <a href="{{ URL('/') }}/registerAnaminese">
+                            <i class='glyphicon glyphicon-list'></i>
+                            <span>Cadastro Anaminese</span>
+                        </a>
+                    </li>
+
+                    <li id='registerMedicament'>
+                        <a href="{{ URL('/') }}/registerMedicament">
+                            <i class='glyphicon glyphicon-list'></i>
+                            <span>Cadastro de Medicamento</span>
+                        </a>
+                    </li>
+
+                    <li id='registerDoctor'>
+                        <a href="{{ URL('/') }}/registerDoctor">
+                            <i class='glyphicon glyphicon-list'></i>
+                            <span>Cadastrar Médico</span>
+                        </a>
+                    </li>
+
+                    @endif
+
 
                     @if(isset($adm) && $adm == true)
 
