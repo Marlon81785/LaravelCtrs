@@ -25,8 +25,9 @@ class ProfilesController extends Controller
         }
     
         Logs::cadastrar($logged->id, ($logged->name . ' vizualizou a lista de perfis'));
-
-        return view('profiles.index', ['profiles' => $profiles]);
+        if(Permissions::permissaoModerador($logged)){
+            return view('profiles.index', ['profiles' => $profiles,'adm' => true]);
+        }
     }
 
     public function create()

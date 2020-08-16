@@ -26,6 +26,8 @@ class LogsController extends Controller
             $logs = Logs::where('r_auth', $logged->id)->get();
         }
 
-        return view('logs.index', ['logs' => $logs]);
+        if(Permissions::permissaoModerador($logged)){
+            return view('logs.index', ['logs' => $logs,'adm' => true]);
+        }
     }
 }

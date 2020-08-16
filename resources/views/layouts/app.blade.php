@@ -69,13 +69,25 @@
                             <span>Principal</span>
                         </a>
                     </li>
+                    
+                    <li id='registerPacient'>
+                        <a href="{{ URL('/') }}/registerPacient">
+                            <i class='glyphicon glyphicon-list'></i>
+                            <span>Cadastro de Paciente</span>
+                        </a>
+                    </li>
+
+                    @if(isset($adm) && $adm == true)
+
+                    <hr>
 
                     <li id='users'>
                         <a href="{{ URL('/') }}/users">
-                            <i class="glyphicon glyphicon-list"></i>
+                            <i class='glyphicon glyphicon-list'></i>
                             <span>Usuários</span>
                         </a>
                     </li>
+                    
 
                     <li id='profiles'>
                         <a href="{{ URL('/') }}/profiles">
@@ -104,6 +116,7 @@
                             <span>Relatórios</span>
                         </a>
                     </li>
+                    @endif
 
                 </ul>
             </section>

@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+use Redirect;
+use Session;
+
+
+use \App\Permissions;
+use \App\Indicators;
+
 class HomeController extends Controller
 {
     /**
@@ -22,6 +30,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $logged = Auth::user();
+        if(Permissions::permissaoModerador($logged)){
+            return view('home')->with(['adm' => true]); 
+            
+            
+        }
         return view('home');
     }
 }

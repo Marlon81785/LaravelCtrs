@@ -25,6 +25,12 @@ class IndicatorsController extends Controller
         }
 
         Logs::cadastrar(Auth::user()->id, (Auth::user()->name . ' vizualizou a lista de indicadores'));
+        
+        if(Permissions::permissaoModerador($logged)){
+            return view('indicators.index', ['indicators' => $indicators,'adm' => true]);
+            
+            
+        }
 
         return view('indicators.index', ['indicators' => $indicators]);
     }

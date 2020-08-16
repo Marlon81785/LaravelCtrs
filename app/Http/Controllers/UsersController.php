@@ -31,10 +31,14 @@ class UsersController extends Controller
         }
 
         Logs::cadastrar($logged->id, ($logged->name . ' visualizou a lista de usuários'));
+        if(Permissions::permissaoModerador($logged)){
 
-        return view('users.index', [
-            'users' => $users
-        ]);
+            return view('users.index', [
+                'users' => $users,
+                'adm' => true
+            ]);
+        
+        }
     }
     
     /**
