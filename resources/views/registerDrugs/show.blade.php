@@ -16,7 +16,7 @@
                 <div class="form-group">
                         <div class="input text">
                             {!! Form::label('Categoria') !!}
-                            {!! Form::text('categoria', $medicamentos->categoria, ['class' => 'form-control']) !!}
+                            {!! Form::text('categoria', $medicamentos->categoria, ['class' => 'form-control', 'disabled' => true]) !!}
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <div class="input text require">
                             {!! Form::label('medicamento') !!}
-                            {!! Form::text('medicamento', $medicamentos->medicamento, ['class' => 'form-control']) !!}
+                            {!! Form::text('medicamento', $medicamentos->medicamento, ['class' => 'form-control', 'disabled' => true]) !!}
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="form-group">
                         <div class="input text require">
                             {!! Form::label('aplicacao1') !!}
-                            {!! Form::text('aplicacao1', $medicamentos->aplicacao1, ['class' => 'form-control']) !!}
+                            {!! Form::text('aplicacao1', $medicamentos->aplicacao1, ['class' => 'form-control', 'disabled' => true]) !!}
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="form-group">
                         <div class="input text require">
                             {!! Form::label('aplicacao2') !!}
-                            {!! Form::text('aplicacao2', $medicamentos->aplicacao2, ['class' => 'form-control']) !!}
+                            {!! Form::text('aplicacao2', $medicamentos->aplicacao2, ['class' => 'form-control', 'disabled' => true]) !!}
                         </div>
                     </div>
                 </div>

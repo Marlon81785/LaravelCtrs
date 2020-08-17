@@ -31,11 +31,18 @@ class registerPacientController extends Controller
         if(Permissions::permissaoAdministrador($logged)){
             return view('registerPacient.index', ['pacient' => $pacient,'adm' => true]);
         }
+        
     }
 
     public function create()
     {
-        return view('registerPacient.add');
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerPacient.add', ['pacient' => $pacient,'adm' => true]);
+        }
+        if(Permissions::permissaoModerador($logged)){
+            return view('registerPacient.add', ['pacient' => $pacient,'mod' => true]);
+        }
     }
 
     public function store(Request $request)
@@ -79,19 +86,27 @@ class registerPacientController extends Controller
     public function show($id)
     {
         $pacient = registerPacient::find($id);
-
-        return view('registerPacient.show', [
-            'pacient' => $pacient, 
-        ]);
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerPacient.show', ['pacient' => $pacient,'adm' => true]);
+        }
+        if(Permissions::permissaoModerador($logged)){
+            return view('registerPacient.add', ['pacient' => $pacient,'mod' => true]);
+        }
+        
     }
 
     public function edit($id)
     {
+        $logged = Auth::user();
         $pacient = registerPacient::find($id);
-
-        return view('registerPacient.edit', [
-            'pacient' => $pacient, 
-        ]);
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerPacient.edit', ['pacient' => $pacient,'adm' => true]);
+        }
+        if(Permissions::permissaoModerador($logged)){
+            return view('registerPacient.add', ['pacient' => $pacient,'mod' => true]);
+        }
+        
     }
 
     public function generate($id)

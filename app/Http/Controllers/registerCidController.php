@@ -35,7 +35,7 @@ class registerCidController extends Controller
 
     public function create()
     {
-        return view('registerCid.add');
+        return view('registerCid.add', ['pacient' => $pacient,'adm' => true]);
     }
 
     public function store(Request $request)
@@ -74,6 +74,7 @@ class registerCidController extends Controller
 
         return view('registerCid.show', [
             'cid' => $cid, 
+            'adm' => true
         ]);
     }
 
@@ -83,6 +84,7 @@ class registerCidController extends Controller
 
         return view('registerCid.edit', [
             'cid' => $cid, 
+            'adm' => true
         ]);
     }
 
