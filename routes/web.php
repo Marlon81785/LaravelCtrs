@@ -28,6 +28,12 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::resource('permissions', 'PermissionsController');
 		Route::resource('profiles', 'ProfilesController');
 		Route::resource('logs', 'LogsController');
+		
+		Route::resource('registerPacient', 'registerPacientController');
+		Route::resource('registerCid', 'registerCidController');
+		Route::resource('registerAnaminese', 'registerAnamineseController');
+		Route::resource('registerMedicament', 'registerMedicamentController');
+		Route::resource('registerDoctor', 'registerDoctorController');
 	});
 	
 });
