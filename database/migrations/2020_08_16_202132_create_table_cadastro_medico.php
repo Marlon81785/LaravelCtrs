@@ -18,7 +18,7 @@ class CreateTableCadastroMedico extends Migration
             $table->string('nome');
             $table->string('crm');
             $table->string('cns');
-            $table->timestamp(0);
+            $table->timestamps();
         });
     }
 
