@@ -3,7 +3,7 @@
     <head>
         
         <!-- Title -->
-        <title>{{ config('app.name', 'Rizer') }}</title>
+        <title>{{ config('app.name', 'CTRS') }}</title>
         
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta charset="UTF-8">

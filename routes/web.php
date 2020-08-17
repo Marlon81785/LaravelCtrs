@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::resource('registerPacient', 'registerPacientController');
 		Route::resource('registerCid', 'registerCidController');
 		Route::resource('registerAnaminese', 'registerAnamineseController');
-		Route::resource('registerMedicament', 'registerMedicamentController');
+		Route::resource('registerDrugs', 'registerDrugsController');
 		Route::resource('registerDoctor', 'registerDoctorController');
 	});
 	

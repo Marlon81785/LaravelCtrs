@@ -9,7 +9,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Rizer') }}</title>
+    <title>{{ config('app.name', 'CTRS') }}</title>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@
 
 <body class="skin-blue">
     <header class="header">
-        <a href="{{ URL('/') }}" class="logo bgpersonalizado">{{ config('app.name', 'Rizer') }}</a>
+        <a href="{{ URL('/') }}" class="logo bgpersonalizado">{{ config('app.name', 'CTRS') }}</a>
         <nav class="navbar navbar-static-top bgpersonalizado" role="navigation">
             <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
@@ -92,8 +92,8 @@
                         </a>
                     </li>
 
-                    <li id='registerMedicament'>
-                        <a href="{{ URL('/') }}/registerMedicament">
+                    <li id='registerDrugs'>
+                        <a href="{{ URL('/') }}/registerDrugs">
                             <i class='glyphicon glyphicon-list'></i>
                             <span>Cadastro de Medicamento</span>
                         </a>
