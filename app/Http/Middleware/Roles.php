@@ -28,6 +28,7 @@ class Roles
             return Redirect::to('/');
         }
 
+
         return $next($request);
     }
 }

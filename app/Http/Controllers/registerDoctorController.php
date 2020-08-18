@@ -31,6 +31,8 @@ class registerDoctorController extends Controller
         if(Permissions::permissaoAdministrador($logged)){
             return view('registerDoctor.index', ['medicos' => $medico,'adm' => true]);
         }
+
+        return view('registerDoctor.index', ['medicos' => $medico]);
     }
 
     public function create()

@@ -31,6 +31,8 @@ class registerAnamineseController extends Controller
         if(Permissions::permissaoAdministrador($logged)){
             return view('registerAnaminese.index', ['anaminese' => $anaminese,'adm' => true]);
         }
+
+        return view('registerAnaminese.index', ['anaminese' => $anaminese]);
     }
 
     public function create()

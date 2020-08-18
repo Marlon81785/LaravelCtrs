@@ -17,13 +17,15 @@ use \App\registerPacient;
 class registerPacientController extends Controller
 {
     public function index(Request $request)
-    {   
+    {  
+    
         $logged = Auth::user();
 
         if (Permissions::permissaoModerador($logged)) {
             $pacient = registerPacient::all();
         } else {
-            $pacient = registerPacient::where('pacient', $logged->id)->get();
+            //$pacient = registerPacient::where('pacient', $logged->id)->get();
+            $pacient = registerPacient::all();
         }
 
         Logs::cadastrar(Auth::user()->id, (Auth::user()->name . ' vizualizou a lista de Pacientes'));
@@ -31,18 +33,17 @@ class registerPacientController extends Controller
         if(Permissions::permissaoAdministrador($logged)){
             return view('registerPacient.index', ['pacient' => $pacient,'adm' => true]);
         }
+
+        return view('registerPacient.index', ['pacient' => $pacient]);
+        
+        
         
     }
 
-    public function create()
-    {
-        $logged = Auth::user();
-        if(Permissions::permissaoAdministrador($logged)){
-            return view('registerPacient.add', ['pacient' => $pacient,'adm' => true]);
-        }
-        if(Permissions::permissaoModerador($logged)){
-            return view('registerPacient.add', ['pacient' => $pacient,'mod' => true]);
-        }
+    public function create(){
+
+        return view('registerPacient.add');
+
     }
 
     public function store(Request $request)

@@ -31,6 +31,8 @@ class registerDrugsController extends Controller
         if(Permissions::permissaoAdministrador($logged)){
             return view('registerDrugs.index', ['medicamentos' => $medicamentos,'adm' => true]);
         }
+
+        return view('registerDrugs.index', ['medicamentos' => $medicamentos]);
     }
 
     public function create()

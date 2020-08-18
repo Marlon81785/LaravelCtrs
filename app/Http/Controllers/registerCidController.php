@@ -31,11 +31,13 @@ class registerCidController extends Controller
         if(Permissions::permissaoAdministrador($logged)){
             return view('registerCid.index', ['cid' => $cid,'adm' => true]);
         }
+
+        return view('registerCid.index', ['cid' => $cid]);
     }
 
     public function create()
     {
-        return view('registerCid.add', ['pacient' => $pacient,'adm' => true]);
+        return view('registerCid.add');
     }
 
     public function store(Request $request)
