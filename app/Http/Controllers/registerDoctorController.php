@@ -37,7 +37,16 @@ class registerDoctorController extends Controller
 
     public function create()
     {
-        return view('registerDoctor.add');
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerDoctor.add', ['adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerDoctor.add', ['mod' => true]);
+        }
+
+        //return view('registerDoctor.add');
     }
 
     public function store(Request $request)
@@ -73,18 +82,31 @@ class registerDoctorController extends Controller
     {
         $medicos = registerDoctor::find($id);
 
-        return view('registerDoctor.show', [
-            'medicos' => $medicos, 
-        ]);
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerDoctor.show', ['medicos' => $medicos, 'adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerDoctor.show', ['medicos' => $medicos, 'mod' => true]);
+        }
+
     }
 
     public function edit($id)
     {
         $medicos = registerDoctor::find($id);
 
-        return view('registerDoctor.edit', [
-            'medicos' => $medicos, 
-        ]);
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerDoctor.edit', ['medicos' => $medicos, 'adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerDoctor.edit', ['medicos' => $medicos, 'mod' => true]);
+        }
+
+       
     }
 
     public function generate($id)

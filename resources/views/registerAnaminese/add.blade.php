@@ -27,7 +27,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <div class="input text required">
-                            {!! Form::label('tratamento') !!}
+                            {!! Form::label('Anaminese') !!}
                             {!! Form::text('anaminese', null, ['class' => 'form-control']) !!}
                         </div>
                     </div>

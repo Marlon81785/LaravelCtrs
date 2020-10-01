@@ -37,7 +37,15 @@ class registerAnamineseController extends Controller
 
     public function create()
     {
-        return view('registerAnaminese.add');
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerAnaminese.add', ['adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerAnaminese.add', ['mod' => true]);
+        }
+        
     }
 
     public function store(Request $request)
@@ -75,18 +83,31 @@ class registerAnamineseController extends Controller
     {
         $anaminese = registerAnaminese::find($id);
 
-        return view('registerAnaminese.show', [
-            'anaminese' => $anaminese, 
-        ]);
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerAnaminese.show', ['anaminese' => $anaminese, 'adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerAnaminese.show', ['anaminese' => $anaminese, 'mod' => true]);
+        }
+
     }
 
     public function edit($id)
     {
         $anaminese = registerAnaminese::find($id);
 
-        return view('registerAnaminese.edit', [
-            'anaminese' => $anaminese, 
-        ]);
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerAnaminese.edit', ['anaminese' => $anaminese, 'adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerAnaminese.edit', ['anaminese' => $anaminese, 'mod' => true]);
+        }
+
+        
     }
 
     public function generate($id)

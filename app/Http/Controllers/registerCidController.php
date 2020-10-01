@@ -37,7 +37,15 @@ class registerCidController extends Controller
 
     public function create()
     {
-        return view('registerCid.add');
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerCid.add', ['adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerCid.add', ['mod' => true]);
+        }
+
     }
 
     public function store(Request $request)
@@ -74,20 +82,30 @@ class registerCidController extends Controller
     {
         $cid = registerCid::find($id);
 
-        return view('registerCid.show', [
-            'cid' => $cid, 
-            'adm' => true
-        ]);
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerCid.show', ['cid' => $cid, 'adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerCid.show', ['cid' => $cid, 'mod' => true]);
+        }
+
+       
     }
 
     public function edit($id)
     {
         $cid = registerCid::find($id);
-
-        return view('registerCid.edit', [
-            'cid' => $cid, 
-            'adm' => true
-        ]);
+        
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerCid.edit', ['cid' => $cid, 'adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerCid.edit', ['cid' => $cid, 'mod' => true]);
+        }
     }
 
     public function generate($id)

@@ -40,9 +40,18 @@ class registerPacientController extends Controller
         
     }
 
-    public function create(){
+    public function create()
+    {
+        $logged = Auth::user();
+        
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerPacient.add', ['adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerPacient.add', ['mod' => true]);
+        }
 
-        return view('registerPacient.add');
 
     }
 

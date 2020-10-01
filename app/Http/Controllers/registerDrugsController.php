@@ -37,7 +37,16 @@ class registerDrugsController extends Controller
 
     public function create()
     {
-        return view('registerDrugs.add');
+
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerDrugs.add', ['adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerDrugs.add', ['mod' => true]);
+        }
+
     }
 
     public function store(Request $request)
@@ -78,18 +87,31 @@ class registerDrugsController extends Controller
     {
         $medicamentos = registerDrugs::find($id);
 
-        return view('registerDrugs.show', [
-            'medicamentos' => $medicamentos, 
-        ]);
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerDrugs.show', ['medicamentos' => $medicamentos, 'adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerDrugs.show', ['medicamentos' => $medicamentos, 'mod' => true]);
+        }
+
     }
 
     public function edit($id)
     {
         $medicamentos = registerDrugs::find($id);
 
-        return view('registerDrugs.edit', [
-            'medicamentos' => $medicamentos, 
-        ]);
+        $logged = Auth::user();
+        if(Permissions::permissaoAdministrador($logged)){
+            return view('registerDrugs.edit', ['medicamentos' => $medicamentos, 'adm' => true]);
+        }
+        
+        if (Permissions::permissaoModerador($logged)) {
+            return view('registerDrugs.edit', ['medicamentos' => $medicamentos, 'mod' => true]);
+        }
+
+
     }
 
     public function generate($id)
