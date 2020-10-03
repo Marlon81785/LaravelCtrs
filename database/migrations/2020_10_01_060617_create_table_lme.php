@@ -15,15 +15,18 @@ class CreateTableLme extends Migration
     {
         Schema::create('lme', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('usuario');
-            $table->string('medicamento');
+            $table->string('usuario');//paciente
+            $table->string('cid');
+            $table->string('medicamento1');
+            $table->string('dosagem1');
+            $table->string('medicamento2')->nullable();
+            $table->string('dosagem2')->nullable();
             $table->string('medico');
-            $table->string('dosagem');
-            $table->string('posologia');
+            $table->string('posologia')->nullable();
             $table->integer('quantidade')->nullable();
             $table->date('inicial');
             $table->date('final');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

@@ -12,9 +12,10 @@ use \App\Permissions;
 use \App\registerPacient;
 use \App\lme;
 
-class lmeController extends Controller
+class lmeCreateController extends Controller
 {
-    public function show($id)
+    //show start controller
+    public function show($id)//paciente selecionado para criar
     {   
         //instancia do model registerPaciente (database)
         $pacient = new registerPacient();
@@ -22,26 +23,21 @@ class lmeController extends Controller
         $lme = new lme();
 
         $logged = Auth::user();
-        
-        $pacient = registerPacient::findOrFail($id);
+        $pacient = registerPacient::find($id);
 
         //usando a facade DB para escrever as consultas manualmente
         $lme = DB::select('select * from lme where usuario = ?', [$id]);
-        
-        
-        
-
-
+        $medicamentos = DB::select('select * from medicamentos');
+        $medicos = DB::select('select * from medicos');
+        $cid = DB::select('select * from cid');
 
         if(Permissions::permissaoAdministrador($logged)){
-            return view('lme.index', ['lme' => $lme, 'paciente' => $pacient, 'adm' => true]);
+            return view('lme.create', ['cid' => $cid, 'medicos' => $medicos, 'medicamentos' => $medicamentos ,'lme' => $lme, 'paciente' => $pacient, 'adm' => true]);
         }
 
         if (Permissions::permissaoModerador($logged)) {
-            return view('lme.index', ['lme' => $lme, 'paciente' => $pacient, 'mod' => true]);
+            return view('lme.create', ['cid' => $cid, 'medicos' => $medicos, 'lme' => $lme, 'paciente' => $pacient, 'mod' => true]);
         }
    
     }
-
-    
 }

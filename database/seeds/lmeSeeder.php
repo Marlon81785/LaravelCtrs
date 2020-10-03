@@ -13,10 +13,13 @@ class lmeSeeder extends Seeder
     {
         DB::table('lme')->insert([
             'usuario' => '1',
-            'medicamento' => 'ALFAEPOETINA 4000UI',
+            'cid' => 'N18.0',
+            'medicamento1' => 'ALFAEPOETINA 4000UI',
+            'dosagem1' => 'ATAQUE',
+            'medicamento2' => 'SACARATO DE HIDROXIDO FERRICO',
+            'dosagem2' => 'ATAQUE',
             'medico' => 'EBERALDO SEVERIANO DOMINGOS',
-            'dosagem' => 'Ataque',
-            'posologia' => 'APLICAR 4000UI 3X POR SEMANA',
+            'posologia' => null,
             'quantidade' => '12',
             'inicial' => date('2020-08-10'),
             'final' => date('2020-10-10'),

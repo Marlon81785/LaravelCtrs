@@ -17,9 +17,8 @@
         <div>
             <table class="table">
                 <thead>
-                    <th>Medicamento</th>
+                    <th>Data</th>
                     <th>Medico</th>
-                    <th>Dosagem</th>
                     <th>Periodo inicial</th>
                     <th>Periodo final</th>
                     <th>Status</th>
@@ -28,9 +27,8 @@
                 <tbody>
                     @foreach($lme as $value)
                     <tr>
-                        <td>{{ $value->medicamento }}</td>
+                        <td>{{ $value->created_at }}</td>
                         <td>{{ $value->medico }}</td>
-                        <td>{{ $value->dosagem }}</td>
                         <td>{{ $value->inicial }}</td>
                         <td>{{ $value->final }}</td>
                         <td>{{ $value->status }}</td>
@@ -46,7 +44,8 @@
 
 
         <div class="form-group text-right">
-            <a href="{{ URL('/') }}/registerPacient/create" class="btn btn-primary bgpersonalizado">Cadastrar</a>
+            <a href="{{ URL('/') }}/lme/create/{{ $paciente->id}}" class="btn btn-primary bgpersonalizado">Incluir</a>
+
         </div>
 
     </div>

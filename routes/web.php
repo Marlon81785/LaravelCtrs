@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::resource('registerDrugs', 'registerDrugsController');
 		Route::resource('registerDoctor', 'registerDoctorController');
 		Route::resource('lme', 'lmeController');
+		Route::resource('lme/create', 'lmeCreateController');
+		Route::resource('lme/save', 'lmeSaveController');//save new lme
 		
 	});
 	
