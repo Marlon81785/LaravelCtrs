@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::any('/perfil', 'ProfilesController@perfil');
 		Route::post('/profiles/default', 'ProfilesController@defaultProfile');
 		Route::get('/reports/generate/{id}', 'ReportsController@generate');
+		
 
 		Route::resource('users', 'UsersController');
 		Route::resource('reports', 'ReportsController');
@@ -35,6 +36,8 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::resource('registerAnaminese', 'registerAnamineseController');
 		Route::resource('registerDrugs', 'registerDrugsController');
 		Route::resource('registerDoctor', 'registerDoctorController');
+		Route::resource('lme', 'lmeController');
+		
 	});
 	
 });

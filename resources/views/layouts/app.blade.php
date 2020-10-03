@@ -73,7 +73,7 @@
                     <li id='registerPacient'>
                         <a href="{{ URL('/') }}/registerPacient">
                             <i class='glyphicon glyphicon-list'></i>
-                            <span>Cadastro de Paciente</span>
+                            <span>Pacientes</span>
                         </a>
                     </li>
                     @if(isset($mod) && $mod == true || isset($adm) && $adm == true)

@@ -32,7 +32,7 @@
                 <tr>
                     <td> {{$value->id}} </td>
 
-                    <td> {{ucwords(strtolower($value->nomePaciente))}} </td>
+                    <td><a href="{{ URL('/') }}/lme/{{$value->id}}"> {{ucwords(strtolower($value->nomePaciente))}}</a> </td>
 
                     <td> {{ucwords(strtolower($value->nomeMaePaciente))}} </td>
 
@@ -46,9 +46,14 @@
 
 
                     <td>
+                        
 
                         <a href="{{ URL('/') }}/registerPacient/{{$value->id}}/edit" alt="Editar" title="Editar" class="btn btn-default">
                             <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+
+                        <a href="{{ URL('/') }}/lme/{{$value->id}}" alt="Editar" title="Editar" class="btn btn-default">
+                            <span class="glyphicon">LME</span>
                         </a>
 
                         <a href="{{ URL('/') }}/registerPacient/{{$value->id}}" alt="Visualizar" title="Visualizar" class="btn btn-default">
