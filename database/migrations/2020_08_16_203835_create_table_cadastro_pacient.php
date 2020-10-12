@@ -18,6 +18,9 @@ class CreateTableCadastroPacient extends Migration
             $table->string('nomePaciente');
             $table->string('nomeMaePaciente');
             $table->string('tratamento');
+            $table->float('peso');
+            $table->integer('altura');
+            $table->string('telefone');
             $table->string('cpf');
             $table->string('cns');
             $table->date('dataNasc');

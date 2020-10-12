@@ -69,6 +69,12 @@ class registerPacientController extends Controller
 
             $pacient->tratamento = $data['tratamento'];
 
+            $pacient->peso = $data['peso'];
+
+            $pacient->altura = $data['altura'];
+
+            $pacient->telefone = $data['telefone'];
+
             $pacient->cpf = $data['cpf'];
 
             $pacient->cns = $data['cns'];
@@ -151,6 +157,12 @@ class registerPacientController extends Controller
             $pacient->nomeMaePaciente = $data['nomeMaePaciente'];
 
             $pacient->tratamento = $data['tratamento'];
+
+            $pacient->peso = $data['peso'];
+
+            $pacient->altura = $data['altura'];
+
+            $pacient->telefone = $data['telefone'];
 
             $pacient->cpf = $data['cpf'];
 

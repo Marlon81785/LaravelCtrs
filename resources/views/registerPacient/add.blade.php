@@ -49,6 +49,39 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <div class="input text required">
+                        {!! Form::label('Peso') !!}
+                        {!! Form::text('peso', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="input text required">
+                        {!! Form::label('Altura') !!}
+                        {!! Form::text('altura', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="input text required">
+                        {!! Form::label('Telefone') !!}
+                        {!! Form::text('telefone', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="input text required">
                         {!! Form::label('CPF') !!}
                         {!! Form::text('cpf', null, ['class' => 'form-control']) !!}
                     </div>

@@ -51,6 +51,39 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <div class="input text required">
+                        {!! Form::label('Peso') !!}
+                        {!! Form::text('peso', $pacient->peso, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="input text required">
+                        {!! Form::label('Altura') !!}
+                        {!! Form::text('altura', $pacient->altura, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="input text required">
+                        {!! Form::label('Telefone') !!}
+                        {!! Form::text('telefone', $pacient->telefone, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="input text required">
                         {!! Form::label('CPF') !!}
                         {!! Form::text('cpf', $pacient->cpf, ['class' => 'form-control']) !!}
                     </div>

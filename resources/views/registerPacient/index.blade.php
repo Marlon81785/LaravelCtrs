@@ -17,6 +17,9 @@
                     <th>Nome Paciente</th>
                     <th>Nome da Mae</th>
                     <th>Tratamento</th>
+                    <th>Peso</th>
+                    <th>Altura</th>
+                    <th>Telefone</th>
                     <th>CPF</th>
                     <th>CNS</th>
                     <th>Data de Nascimento</th>
@@ -37,6 +40,12 @@
                     <td> {{ucwords(strtolower($value->nomeMaePaciente))}} </td>
 
                     <td> {{$value->tratamento}} </td>
+
+                    <td> {{$value->peso}} </td>
+
+                    <td> {{$value->altura}} </td>
+
+                    <td> {{$value->telefone}} </td>
 
                     <td> {{$value->cpf}} </td>
 
