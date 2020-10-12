@@ -44,6 +44,7 @@
 
 
         <div class="form-group text-right">
+            <a href="{{ URL('/') }}/registerPacient/" class="btn btn-primary bgpersonalizado">Voltar</a>
             <a href="{{ URL('/') }}/lme/create/{{ $paciente->id}}" class="btn btn-primary bgpersonalizado">Incluir</a>
 
         </div>

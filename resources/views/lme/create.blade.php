@@ -2,6 +2,15 @@
 
 @section('content')
 
+<script src="{{ asset('js/lmeScripts/logica.js') }}"></script>
+<script src="{{ asset('js/lmeScripts/pdfmake.min.js') }}"></script>
+<script src="{{ asset('js/lmeScripts/vfs_fonts.js') }}"></script>
+<script src="{{ asset('js/lmeScripts/data.js') }}"></script>
+<script src="{{ asset('js/lmeScripts/lme.js') }}"></script>
+
+
+
+
 <div class="box">
     
     <div class="box-header">
@@ -15,86 +24,133 @@
         <br><br>
 
 
-        <div>
-            <div class="form-group">
-              <label for="">Responsável</label>
-              <select class="form-control" name="resp" id="resp">
-              @foreach($medicos as $value)
-                <option value="{{ $value->nome }}">{{ $value->nome }}</option>
-              @endforeach
-                
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="">CID</label>
-              <select class="form-control" name="cid" id="cid">
-                @foreach($cid as $value)
-                    <option value="{{ $value->cid }}">{{ $value->cid." - ".$value->desc }}</option>
-                @endforeach
-              </select>
-            </div>
-
-            <div class="form-group">
-                <label for="example-date-input" class="col-2 col-form-label">Data Inicial</label>
-                <div class="col-10">
-                    <input class="form-control" type="date" value="" id="inicio">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="example-date-input" class="col-2 col-form-label">Data Final</label>
-                <div class="">
-                    <input class="form-control" type="date" value="" id="fim">
-                </div>
-            </div>
-
-            <div class="box body" id='areaMedicamentos'>
-                
-                <select name="medicamentos" id="medicamentos">
-                    @foreach($medicamentos as $value)
-                        <option value="{{ $value->medicamento }}">{{ $value->medicamento }}</option>
-                    @endforeach
-                </select>
-
-                <select name="aplicacao" id="aplicacao">
-                    <option value="ATAQUE">ATAQUE</option>
-                    <option value="MANUTENCAO">MANUTENÇÃO</option>
-                </select>
-
-                <button onclick="medicamentosNaLME()">Adicionar</button><br><br>
-
-                <div>
-                    <span>Medicamentos na LME</span>
-                </div>
-
-                <table id="table" class="table">
-                    <tr>
-                        <th>Medicamento</th>
-                        <th>Aplicação</th>
-                        <th>Opção</th>
-
-                    </tr>
-
-                    <tr id="medicamentoReceita" class="list-group">
-                        
-                        
-                    </tr>
-                        
-
-                </table>
-                
-
-
-
-                
-            
-            </div>
-
-
-            
-            
+        <div hidden>
+            <h3>Informações do paciente</h3>
+            <input id="nomePaciente" type="text" placeholder="Nome completo do paciente" value="{{ $paciente['nomePaciente'] }}">
+            <input id="nomeMae" type="text" placeholder="Nome da mae do paciente" value="{{ $paciente['nomeMaePaciente'] }}">
+            <input id="peso" type="text" placeholder="Peso" value="{{ $paciente['peso'] }}">
+            <input id="altura" type="text" placeholder="Altura" value="{{ $paciente['altura'] }}">
+            <input id="cpf" type="text" placeholder="CPF" value="{{ $paciente['cpf'] }}">
+            <input id="telefone" type="text" placeholder="telefone" value="{{ $paciente['telefone'] }}">
         </div>
+
+    <div>
+        <h3>Medicamentos -> LME</h3>
+        <select name="" id="medicamento">
+            <option value="ALFAEPOETINA 2000UI (INJETAVEL)">ALFAEPOETINA 2000UI</option>
+            <option value="ALFAEPOETINA 3000UI (INJETAVEL)">ALFAEPOETINA 3000UI</option>
+            <option value="ALFAEPOETINA 4000UI (INJETAVEL)">ALFAEPOETINA 4000UI</option>
+            <option value="SACARATO DE HIDROXIDO FERRICO">SACARATO DE HIDROXIDO FERRICO</option>
+        </select>
+    
+        <select name="" id="dosagem">
+            <option value="AA">ALFAEPOETINA ATAQUE</option>
+            <option value="AM">ALFAEPOETINA MANUTENÇÃO</option>
+            <option value="SA">SACARATO ATAQUE</option>
+            <option value="SM">SACARATO MANUTENÇÃO</option>
+            <option value="CALCITRIOL 30 CP">CALCITRIOL 30 CP</option>
+            <option value="CALCITRIOL 60 CP">CALCITRIOL 60 CP</option>
+            <option value="CINACALCETE 30 CP">CINACALCETE 30 CP</option>
+            <option value="CINACALCETE 60 CP">CINACALCETE 60 CP</option>
+    
+        </select>
+    
+        <button onclick="adicionarNaTabela()">Adicionar</button>
+    
+        <div>
+            <div>
+                <table class="table">
+                    <th>Medicamento</th>
+                    <th>Quantidade</th>
+                    <th>Opções</th>
+                    <tbody id="tabela-medicamento">
+                    
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    
+        <hr>
+    </div>
+
+    <div style="display: block;">
+        <h3>Configurações -> LME</h3>
+        <select id="cid" name="" id="" hidden>
+            <option value="N18.0">N18.0 - DOENÇA RENAL EM ESTADIO FINAL</option>
+            <option value="N25.0">N25.0 - OSTEODISTROFIA RENAL</option>
+        </select>
+
+        <div>
+            <label for="anaminese">Anamnese</label>
+            <select name="" id="anaminese">
+                <option value="Paciente portador de IRC em programa hemodialitico convencional">Paciente portador de IRC em programa hemodialitico convencional</option>
+                <option value="Paciente portador de IRC em programa de Dialise Peritoneal Ambulatorial Continua (CAPD).">Paciente portador de IRC em programa de Dialise Peritoneal Ambulatorial Continua (CAPD).</option>
+                <option value="Paciente portador de IRC em tratamento conservador.">Paciente portador de IRC em tratamento conservador.</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="emUso">Realizou tratamento previo ou esta em tratamento</label>
+            <select name="" id="emUso">
+                <option value="s">SIM - Em uso</option>
+                <option value="n">NÃO</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="medico">Responsável</label>
+            <select name="" id="medico">
+                <option value="Eberaldo Severiano Domingos">Eberaldo Severiano Domingos</option>
+            </select>
+        </div>
+    
+    
+        <div>
+            <label for="tratamento">Tipo de tratamento</label>
+            <select name="" id="tratamento">
+                <option value="c">Conservador</option>
+                <option value="dp">Dialise Peritoneal</option>
+                <option value="hd">Hemodialise</option>
+            </select>
+
+        </div>
+        <div>
+            <label for="primeiroTratamentoA">formulario Alfaepoetina</label>
+            <select name="" id="primeiroTratamentoA">
+                <option value="s">Primeiro tratamento com Alfaepoetina</option>
+                <option value="n">Não é o primeiro tratamento</option>
+            </select>
+
+        </div>
+
+        <div>
+            <label for="primeiroTratamentoS">formulario Sacarato</label>
+            <select name="" id="primeiroTratamentoS">
+                <option value="s">Primeiro tratamento com Sacarato</option>
+                <option value="n">Não é o primeiro tratamento</option>
+            </select>
+        </div>
+            <select name="" id="usouMedicamento" hidden>
+                <option value="s">SIM - Usou medicamento fornecido pelo SUS</option>
+                <option value="n">NÂO - Não usou medicamento fornecido pelo sus</option>
+            </select>
+        <div>
+            <label for="">Estagio da DRC</label>
+            <select name="" id="estagioDrc">
+                <option value="V">V</option>
+                <option value="IV">IV</option>
+                <option value="III">III</option>
+                <option value="II">II</option>
+            </select>
+        </div>
+    </div>
+    
+    <br><br><br>
+
+    <button onclick="anemiaCombinado()">Gerar Alfaepoetina + sacarato</button>
+    <button onclick="alfaepoetina()">Gerar Alfaepoetina</button>
+    <button onclick="noripurum()">Gerar Sacarato</button>
 
 
 
@@ -103,10 +159,17 @@
 
         <div class="form-group text-right">
             <button onclick="submitForm()" class="btn btn-primary bgpersonalizado">Gravar</button>
-            <a href="{{ URL('/') }}/lme/{{$paciente['id']}}" class="btn btn-primary bgpersonalizado">Cancelar</a>
+            <a href="{{ URL('/') }}/lme/{{$paciente['id']}}" class="btn btn-primary bgpersonalizado">Voltar</a>
         </div>
 
     </div>
+
+
+
+
+
+
+
 
     <form name="formOcult" id="formOcult" method="POST" action="{{ URL('/') }}/lme/save">
     {{ csrf_field() }}
@@ -135,62 +198,60 @@
     var dosagem2 = "";
 
     function getData(){
-        medicamento1 = document.getElementById("md0").innerHTML;
-        dosagem1 = document.getElementById("dos0").innerHTML;
-        if ($("td#md1").length) {
-            console.log("existe");
-            medicamento2 = document.getElementById("md1").innerHTML;
-            dosagem2 = document.getElementById("dos1").innerHTML;
-            console.log(medicamento2);
-            console.log(dosagem2);
-
+        try{
+            medicamento1 = document.querySelectorAll("td")[0].textContent;
+            dosagem1 = medicamento2 = document.querySelectorAll("td")[1].textContent;
+        }catch{
+            console.log("medicamento1 nao localizado");
+            return 0;
         }
-        
-        console.log(medicamento1);
-        console.log(dosagem1);
+        try{
+            medicamento2 = document.querySelectorAll("td")[3].textContent;
+            dosagem2 = document.querySelectorAll("td")[4].textContent;
+        }catch{
+            console.log("medicamento2 nao localizado");
+            return 0;
+        }
         
     }
 
 
     function submitForm(){
         getData();
-        document.getElementById("med1").value = medicamento1;
-        document.getElementById("dose1").value = dosagem1;
+        try{
+            document.getElementById("med1").value = medicamento1;
+            document.getElementById("dose1").value = dosagem1;
 
-        
-        document.getElementById("med2").value = medicamento2;
-        document.getElementById("dose2").value = dosagem2;
+            
+            document.getElementById("med2").value = medicamento2;
+            document.getElementById("dose2").value = dosagem2;
 
-        document.getElementById("resp2").value = document.getElementById('resp').value;
-        document.getElementById("cid2").value = document.getElementById('cid').value;
-        document.getElementById("inicio2").value = document.getElementById('inicio').value;
-        document.getElementById("fim2").value = document.getElementById('fim').value;
+            document.getElementById("resp2").value = document.getElementById('medico').value;
+            document.getElementById("cid2").value = document.getElementById('cid').value;
+            document.getElementById("inicio2").value = ano+"-"+mes+"-"+dia;
 
-        document.getElementById("formOcult").submit();
-
-
-        
-    }
-
-    
-    
-    function remove(id)
-    {
-        document.getElementById(id).remove();
-        cont = cont-1;
-    }
-    function medicamentosNaLME()
-    {
-        if(cont == 2){
-            alert("No caso da anemia só disponibilizei 2 medicamentos por lme");
-            return 0;
+        }catch{
+            console.log("Parece que temos falha no formulario");
+            
         }
-        var medicamentoSelecionado = document.getElementById('medicamentos').value;
-        var aplicacao = document.getElementById('aplicacao').value;
-        document.getElementById('table').innerHTML += "<tr id="+cont+"><td id='md"+cont+"'>" +medicamentoSelecionado+ "</td><td id='dos"+cont+"'>" +aplicacao+ "</td><td><button onclick='remove("+cont+")'>Remover</button></td></tr>";
-        cont++;
+        
+        var mesFinal = mes+3;
+        if(mesFinal > 12){
+            mesFinal = mesFinal - 12;
+            ano = ano+1;
+        }
+        document.getElementById("fim2").value = ano+"-"+mesFinal+"-"+dia;
+
+        if(medicamento1 !== ""){
+            document.getElementById("formOcult").submit();
+        }
+        
+
+
         
     }
+
+    
 </script>
 
 @endsection
